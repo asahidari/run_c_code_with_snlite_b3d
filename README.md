@@ -4,6 +4,8 @@
 
 This project is an example of running external C code with Script Node Lite (SNLite) node of [Sverchok add-on](https://github.com/nortikin/sverchok) for [Blender](https://www.blender.org). You can also use this as a template, when you intend to run your own C/C++ codes in Blender.
 
+This idea is originated from @zeffi and nortikin/sverchok#1734 .
+
 ## Usage
 
 ### Creating C library and modifying Python file
