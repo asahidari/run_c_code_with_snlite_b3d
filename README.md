@@ -23,6 +23,8 @@ This project is an example of running external C code with Script Node Lite (SNL
 - Set the node parameters and input some vertices to the node.  
 - After that, calculation run and you can use output data, changing 'framenum' parameter.  
 
+![Image of runningscript with SNLite](./images/scale_verts_screen_shot.png)
+
 ## Other way to use
 - Modify original script and C code for your own projects, especially for projects that require large amount of calculation and high performance.
 
