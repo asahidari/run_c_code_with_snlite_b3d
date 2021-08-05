@@ -8,26 +8,44 @@ This project idea is originated from [@zeffi's gist](https://gist.github.com/zef
 
 ## Usage
 
-### Creating C library and modifying Python file
+### Create C library and modify Python file
 - Create C dynamic library in advance, from C file in the same directory.  
-- Then, open Python file and replace 'load_library' args with your library name and path.  
-
-### Opening Sverchok node editor
+    
+    ```console
+    :: Windows
+    cl.exe /D_USRDLL /D_WINDLL scale_verts.c /MT /link /DLL /OUT:libscale_verts.dll
+    ```
+    ```sh
+    # macOS
+    gcc -dynamiclib -o ./libscale_verts.dylib ./scale_verts.c
+    ```
+    ```sh
+    # Linux
+    gcc -c -fPIC scale_verts.c -o scale_verts.o
+    gcc scale_verts.o -shared -o libscale_verts.so
+    ```
+### Open Sverchok node editor
 - Install Blender and Sverchok add-on.
 - Enable the add-on with Menu->Edit->Preferences...-> add-ons.  
 - Open sverchok node editor, and click '+New' button in the header.  
 
-### Using SNLite node
+### Use SNLite node
 - Press 'Shift-A' and select 'scripts'->'ScriptNodeLite'.  
-- Open Blender's text editor, and copy and paste the Python script to the text area.  
-- Change the text name from 'Text' to 'Text.py'.  
-- Write 'Text.py' to the text box in SNLite node, and push the right button of the node.  
+- Open Text editor in Blender and click '+New' to create a text buffer.
+- Copy and paste the Python script to the text buffer.
+- Modify "load_library" arguments in the script to load your library.
+    
+    ```python
+            # load library
+            libscale_verts = npct.load_library('libscale_verts', os.path.dirname('/Path/to/the/library/directory/'))
+    ```
+- Put the the text buffer name to the node and click the right button.
 - Set the node parameters and input some vertices to the node.  
 - After that, calculation run and you can use output data, changing 'framenum' parameter.  
 
 ![Image of runningscript with SNLite](./images/scale_verts_screen_shot.png)
 
-## Other way to use
+## Use this project as a template for running C coode
 - Modify original script and C code for your own projects, especially for projects that require large amount of calculation and high performance.
 
 #### Project Files
